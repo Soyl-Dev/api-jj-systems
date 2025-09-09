@@ -11,7 +11,6 @@ import controllerNotificacao from "./controllers/controller.notificacao.js";
 import controllerPerfil from "./controllers/controller.perfil.js";
 import controllerCategoria from "./controllers/controller.categoria.js";
 import controllerClassificacao from "./controllers/controller.classificacao.js";
-import { listarAtendimentos } from "./controllers/controller.paciente.js";
 
 // Usando fileURLToPath para obter o __dirname no ESM
 const __filename = fileURLToPath(import.meta.url);
@@ -69,8 +68,6 @@ router.use("/notificacao/uploads/imagens", express.static(path.join(__dirname, '
 router.get("/perfil/", jwt.ValidateToken,controllerPerfil.Listar);
 router.get("/perfil/:cd_usuario", jwt.ValidateToken,controllerPerfil.Listar);
 
-// Paciente
-router.get('/paciente/atendimentos/:cd_atendimento', listarAtendimentos);
 
 
 export default router;

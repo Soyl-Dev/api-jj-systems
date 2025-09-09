@@ -49,14 +49,11 @@ async function Login(CD_USUARIO, cd_senha) {
             console.error("Senha não encontrada no banco de dados para o usuário:", CD_USUARIO);
             return { status: 500, message: "Erro na recuperação da senha do usuário" };
         }
-        console.log("Tentando comparar as senhas...");
-        console.log("Senha fornecida:", cd_senha);
-        console.log("Hash armazenado no banco:", usuarioEncontrado.CD_SENHA);
         // Compara a senha fornecida com a armazenada no banco
         const senhaValida = await bcrypt.compare(cd_senha, usuarioEncontrado.CD_SENHA);
 
         if (senhaValida) {
-            console.log("As senhas coincidem!");
+            console.log("Usuario autenticado!");
             delete usuarioEncontrado.CD_SENHA; // Remove o hash antes de retornar
             usuarioEncontrado.token = jwt.CreateToken(usuarioEncontrado.CD_USUARIO);
             return usuarioEncontrado;
