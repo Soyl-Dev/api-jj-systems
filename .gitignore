@@ -1,0 +1,4 @@
+.env
+node_modules/
+npm install.txt
+trigger db.txt
